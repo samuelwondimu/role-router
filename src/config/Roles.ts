@@ -1,7 +1,6 @@
 export default {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
-  MANAGER: "MANAGER",
   CLERK: "CLERK",
   GUEST: "GUEST",
 };

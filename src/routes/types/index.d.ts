@@ -4,7 +4,7 @@ export interface childrenRouter {
   title: string;
   path: string;
   exact?: boolean;
-  component: LazyExoticComponent<ComponentType<any>>;
+  component?: LazyExoticComponent<ComponentType<any>>;
   permissions?: string[];
 }
 export interface RouterConfig {
