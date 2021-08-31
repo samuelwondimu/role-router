@@ -1,7 +1,12 @@
 import React from "react";
+import Routes from "./routes/index";
 
 function App() {
-  return <div>role-router</div>;
+  return (
+    <div>
+      <Routes />
+    </div>
+  );
 }
 
 export default App;

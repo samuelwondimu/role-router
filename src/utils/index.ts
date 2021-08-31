@@ -1,4 +1,5 @@
 import { intersection } from "lodash";
+import Roles from "../config/Roles";
 
 import { RouterConfig } from "../routes/types";
 
@@ -17,6 +18,12 @@ export function getAllowedRoutes(routes: RouterConfig[]) {
   return routes.filter(({ permissions }) => {
     if (!permissions) return true;
     else if (!isArrayWithLength(permissions)) return true;
-    else return intersection(permissions, roles).length;
+    else
+      return intersection(permissions, [Roles.ADMIN, Roles.SUPER_ADMIN]).length;
   });
+}
+
+// TODO: replace with api
+export function isLoggedIn() {
+  return true;
 }
