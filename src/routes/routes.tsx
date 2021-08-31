@@ -44,7 +44,8 @@ const routes: RouterConfig[] = [
       },
     ],
   },
-  // Profile Routes
+
+  // PROFILE Routes
   {
     title: "Profile",
     path: "/profile",
