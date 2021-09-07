@@ -1,13 +1,21 @@
 import { intersection } from "lodash";
-import Roles from "../config/Roles";
+import { routerTypes } from "../config/routerTypes";
 
-import { RouterConfig } from "../routes/types";
+export function isLoggedIn() {
+  /*
+   * Note:
+   *  This app assume if local storage have roles it means
+   *  user is authenticated you can update this logic as per your app.
+   */
+  return !!localStorage.getItem("roles");
+}
 
 export function isArrayWithLength(arr: string[]) {
   return Array.isArray(arr) && arr.length;
 }
 
-export function getAllowedRoutes(routes: RouterConfig[]) {
+export function getAllowedRoutes(routes: routerTypes[]) {
+  localStorage.setItem("roles", JSON.stringify("ADMIN"));
   const role = localStorage.getItem("roles");
   let roles: string[];
 
@@ -15,15 +23,9 @@ export function getAllowedRoutes(routes: RouterConfig[]) {
     roles = JSON.parse(role);
   }
 
-  return routes.filter(({ permissions }) => {
-    if (!permissions) return true;
-    else if (!isArrayWithLength(permissions)) return true;
-    else
-      return intersection(permissions, [Roles.ADMIN, Roles.SUPER_ADMIN]).length;
+  return routes.filter(({ permission }) => {
+    if (!permission) return true;
+    else if (!isArrayWithLength(permission)) return true;
+    else return intersection(permission, roles).length;
   });
-}
-
-// TODO: replace with api
-export function isLoggedIn() {
-  return true;
 }

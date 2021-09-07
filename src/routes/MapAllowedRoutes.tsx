@@ -1,41 +1,34 @@
 import React, { memo } from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import { RouterConfig } from "./types";
+import { routerTypes } from "../config/routerTypes";
 import NotFound from "../components/common/NotFound";
 /*
   This is the route utility component used for generating
   routes and child routes it only requires routes array and basePath
 */
-interface AllowedRoutesProps {
+interface MapAllowedRoutesProps {
   basePath: string;
-  routes: RouterConfig[];
+  routes: routerTypes[];
   isAddNotFound: boolean;
 }
 
-const MapAllowedRoutes: React.FC<AllowedRoutesProps> = ({
+const MapAllowedRoutes: React.FC<MapAllowedRoutesProps> = ({
   basePath,
   routes,
   isAddNotFound,
-}: AllowedRoutesProps) => {
+}: MapAllowedRoutesProps) => {
   const match = useRouteMatch(basePath);
   return (
     <Switch>
       {routes &&
-        routes.map((route: any) => {
-          const {
-            path,
-            component: Componenet,
-            children,
-            title,
-            permissions,
-            ...rest
-          } = route;
+        routes.map((route) => {
+          const { path, Component, children, title, permission, ...rest } =
+            route;
 
           return (
             <Route {...rest} key={path} path={`${match?.path}${path}`}>
-              <Componenet children={children} />
-              {/* {console.log(`${match?.path}${path}`)} */}
-              {/* {console.log(<Componenet children={children} />)} */}
+              {/* TODO: */}
+              <Component children={children} />
             </Route>
           );
         })}

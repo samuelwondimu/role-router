@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Redirect, useRouteMatch } from "react-router-dom";
 import { getAllowedRoutes, isLoggedIn } from "../utils";
-import routes from "./routes";
+import routes from "../config/PrivateRoutesConfig";
 
 import MapAllowedRoutes from "./MapAllowedRoutes";
 import NavBar from "../components/common/NavBar";
