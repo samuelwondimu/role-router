@@ -7,6 +7,8 @@ showing fallback UI it would be a great idea to generate only the routes in whic
 so if the user navigate manually to a route ie: (typing in the address bar)
 he/she will get 404 Not Found screen because route is not registered.
 
+![alt text](https://i.ibb.co/xF9gCxW/Screenshot-from-2021-09-07-17-31-39.png)
+
 ```
 File: src/config/Rolesexport default {
 SUPER_ADMIN: 'SUPER_ADMIN',
